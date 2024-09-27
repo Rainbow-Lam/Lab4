@@ -275,6 +275,12 @@ lab4data %>%
 
 # Q1: What is your overall conclusion about this variable’s normality? Why?
 
+This variable is not normally distributed. First, by looking at all the
+normality plots, none of them presents a normal distribution. At the
+same time, the obtained p-value from the Shapiro-Wilk normality test is
+below .05, which indicates that this variable is not normally
+distributed.
+
 # Equal Variance between Groups
 
 ## Descrptive Variance
@@ -389,7 +395,11 @@ leveneTest(Performance~Group, lab4dataConG1)
 
 # Q2: Overall, does it meet the equal variance assumption across the groups? Why?
 
-# Transformation
+No, the assumption of equal variance across the groups is not met.
+First, the difference between the variances of each group is greater
+than twice, which means eqal variances is not met. The Levene’s test is
+also shown to be significant, which means the assumption of equla
+variances is violated. \# Transformation
 
 ``` r
 #if any of the assumption is not met, use transformation 
@@ -398,6 +408,11 @@ lab4data$Performance_log <- log10(lab4data$Performance)
 ```
 
 # Q3: Run the above tests again with the transformed outcome. Compare the differences in results.
+
+By running the normality plot again with the transformed outcome, the
+variable of each group become much more normally distributed. The data
+shifts from being positively skewed to being normally distributed.
+Hence, the transformed outcome meet the assumption of normality.
 
 ``` r
 ggplot(lab4data, aes(x = Performance_log)) + geom_histogram(binwidth = 0.25) + facet_wrap(~Group) + theme_classic()
